@@ -1,6 +1,7 @@
 <?php
 require("../koneksi/koneksiB.php");
 
+// Vulnerable script
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
    $username = $_POST["username"];
 
@@ -15,3 +16,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 } else {
    echo "404 NOT FOUND";
 }
+
+// Safe script
+// if ($_SERVER["REQUEST_METHOD"] === "POST") {
+//    $username = $_POST["username"];
+
+//    $query = "SELECT * FROM users_lab WHERE username = ?";
+//    $stmt = $conn->prepare($query);
+//    $stmt->bind_param("s", $username);
+//    $stmt->execute();
+
+//    $response["message"] = true;
+//    if ($stmt->fetch()) {
+//       $response["message"] = false;
+//       $stmt->close();
+//       $conn->close();
+//    }
+//    echo json_encode($response);
+// } else {
+//    echo "404 NOT FOUND";
+// }

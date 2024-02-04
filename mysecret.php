@@ -25,10 +25,21 @@
    <!-- Logged IP to database -->
    <?php
       require('./koneksi/koneksiE.php');
+      // Vulnerable script
       $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'] = $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['HTTP_CLIENT_IP'] ?? $_SERVER['REMOTE_ADDR'];
       $timestamp = date('Y-m-d H:i:s');
       $query = "INSERT INTO log_secret(ip_address, timestamp) VALUES('". $ip_address ."', '". $timestamp ."')";
       $result = $conn->query($query);
+
+      // Safe script
+      // $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'] = $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['HTTP_CLIENT_IP'] ?? $_SERVER['REMOTE_ADDR'];
+      // $timestamp = date('Y-m-d H:i:s');
+      // $query = "INSERT INTO log_secret(ip_address, timestamp) VALUES(?, ?)";
+      // $stmt = $conn->prepare($query);
+      // $stmt->bind_param("ss", $ip_address, $timestamp);
+      // $stmt->execute();
+      // $stmt->close();
+      // $conn->close();
    ?>
 
 

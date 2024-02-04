@@ -15,6 +15,7 @@
    <!-- Koneksi D -->
    <?php 
       require("./koneksi/koneksiD.php"); 
+      // Vulnerable script
       $id = $_GET['id'];
       $query = "SELECT title, content FROM posts where id = ". $id ."";
       $result = $conn->query($query)->fetch_assoc();
@@ -24,6 +25,27 @@
             'content' => 'Not Found'
          ];
       }
+
+      // Safe script
+      // $id = $_GET['id'];
+      // $query = "SELECT title, content FROM posts where id = ?";
+      // $stmt = $conn->prepare($query);
+      // $stmt->bind_param("i", $id);
+      // $stmt->execute();
+      // $stmt->bind_result($note_title, $note_content);
+      // if($stmt->fetch()) {
+      //    $result = [
+      //       'title' => $note_title,
+      //       'content' => $note_content
+      //    ];
+      // } else {
+      //    $result = [
+      //       'title' => '404',
+      //       'content' => 'Not Found'
+      //    ];
+      // }
+      // $stmt->close();
+      // $conn->close();
    ?>
 
    <div class="container">

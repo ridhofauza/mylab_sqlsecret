@@ -39,6 +39,7 @@
    </div>
 
    <?php
+   // Vulnerable script
    if ($_POST) {
       if ($_POST["username"] <> "" || $_POST["password"] <> "") {
          $isLogin = false;
@@ -64,6 +65,42 @@
          }
       }
    }
+   ?>
+
+   <?php
+   // Safe script
+   // if ($_POST) {
+   //    if ($_POST["username"] <> "" || $_POST["password"] <> "") {
+   //       $isLogin = false;
+   //       $username = $_POST["username"];
+   //       $password = $_POST["password"];
+   //       $query = "SELECT username FROM users_lab WHERE username = ?";
+   //       $stmt = $conn->prepare($query);
+   //       $stmt->bind_param("s", $username);
+   //       $stmt->execute();
+   //       $stmt->bind_result($result_username);
+   //       if ($stmt->fetch()) {
+   //          $stmt->close();
+   //          $query = "SELECT * FROM users_lab WHERE username = ? AND password = ?";
+   //          $stmt = $conn->prepare($query);
+   //          $stmt->bind_param("ss", $result_username, $password);
+   //          $stmt->execute();
+   //          if ($stmt->fetch()) {
+   //             $stmt->close();
+   //             $isLogin = true;
+   //          }
+   //       }
+   //       $conn->close();
+
+   //       if ($isLogin === true) {
+   //          session_start();
+   //          $_SESSION['is_login'] = $isLogin;
+   //          header("Location: dashboard.php");
+   //       } else {
+   //          echo "<script>alert('Login Gagal!')</script>";
+   //       }
+   //    }
+   // }
    ?>
 
    <script src="./assets/jquery-3.7.1.min.js"></script>
